@@ -40,11 +40,21 @@ function WidgetForm() {
         setFeedbackType(null);
     }
 
-    const classStyles =
-        "bg-zinc-900 p-4 relative rounded-2xl mb-4 flex-col text-center items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto";
-
     return (
-        <div className={classStyles}>
+        <div
+            className="
+                bg-zinc-900 
+                p-4 
+                relative 
+                rounded-2xl 
+                mb-4 
+                flex-col 
+                text-center 
+                items-center 
+                shadow-lg 
+                w-[calc(100vw-2rem)] 
+                md:w-auto"
+        >
             {!feedbackType ? (
                 <FeedbackTypeStep onFeedBackTypeChanged={setFeedbackType} />
             ) : (
