@@ -5,10 +5,13 @@ import Loading from "../Loading";
 
 interface ScreenshotButtonProps {
     screenshot: string | null;
-    onScreenshotTook: (screensho: string | null) => void
+    onScreenshotTook: (screensho: string | null) => void;
 }
 
-function ScreenshotButton({screenshot, onScreenshotTook}: ScreenshotButtonProps) {
+function ScreenshotButton({
+    screenshot,
+    onScreenshotTook,
+}: ScreenshotButtonProps) {
     const [isTakingScreenshot, setIsTakingScreenshot] = useState(false);
 
     const handleTakeScreenshot = async () => {
@@ -17,7 +20,7 @@ function ScreenshotButton({screenshot, onScreenshotTook}: ScreenshotButtonProps)
         const canvas = await html2canvas(document.querySelector("html")!);
         const base64image = canvas.toDataURL("image/png");
 
-        onScreenshotTook(base64image)
+        onScreenshotTook(base64image);
         setIsTakingScreenshot(false);
     };
 
@@ -25,9 +28,10 @@ function ScreenshotButton({screenshot, onScreenshotTook}: ScreenshotButtonProps)
         return (
             <button
                 onClick={() => {
-                    onScreenshotTook(null)
+                    onScreenshotTook(null);
                 }}
-            type="button" className="
+                type="button"
+                className="
                 p-1
                 w-10
                 h-10
@@ -42,13 +46,13 @@ function ScreenshotButton({screenshot, onScreenshotTook}: ScreenshotButtonProps)
                 "
                 style={{
                     backgroundImage: `url(${screenshot})`,
-                    backgroundPosition: 'right bottom',
+                    backgroundPosition: "right bottom",
                     backgroundSize: 180,
                 }}
             >
                 <Trash weight="fill" />
             </button>
-        )
+        );
     }
 
     return (

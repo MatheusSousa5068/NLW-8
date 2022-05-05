@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { FeedBackType, feedbackTypes } from "..";
 import CloseButton from "../../CloseButton";
 import { ArrowLeft, Camera } from "phosphor-react";
@@ -14,7 +14,17 @@ function FeedbackContentStep({
     onFeedbackRestartRequested,
 }: FeedBackContentStepProps) {
     const feedbackTypeInfo = feedbackTypes[feedbackType];
-    const [screenshot, setScreenshot] = useState<string | null>(null)
+    const [screenshot, setScreenshot] = useState<string | null>(null);
+    const [comment, setComment] = useState("");
+
+    const handleSubmitFeedback = (event: FormEvent) => {
+        event.preventDefault()
+
+        console.log({
+            screenshot,
+            comment
+        })
+    }
 
     return (
         <>
@@ -44,8 +54,9 @@ function FeedbackContentStep({
                 <CloseButton />
             </header>
 
-            <form action="" className="my-4 w-full">
+            <form onSubmit={handleSubmitFeedback} className="my-4 w-full">
                 <textarea
+                    onChange={(event) => setComment(event.target.value)}
                     className="
                     min-w-[304px] 
                     w-full min-h-[112px] 
@@ -66,8 +77,10 @@ function FeedbackContentStep({
                 />
 
                 <footer className="flex mt-2 gap-2">
-                    <ScreenshotButton screenshot={screenshot} onScreenshotTook={setScreenshot}/>
-
+                    <ScreenshotButton
+                        screenshot={screenshot}
+                        onScreenshotTook={setScreenshot}
+                    />
 
                     <button
                         type="submit"
@@ -89,7 +102,6 @@ function FeedbackContentStep({
                         transition-colors
                         duration-300
                         "
-                    
                     >
                         Enviar feedback
                     </button>
