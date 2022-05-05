@@ -84,6 +84,7 @@ function FeedbackContentStep({
 
                     <button
                         type="submit"
+                        disabled={comment.length === 0}
                         className="
                         p-2 
                         bg-brand-500 
@@ -101,6 +102,8 @@ function FeedbackContentStep({
                         focus:ring-brand-500
                         transition-colors
                         duration-300
+                        disabled:opacity-50
+                        disabled:hover:bg-brand-500
                         "
                     >
                         Enviar feedback
