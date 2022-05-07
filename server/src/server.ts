@@ -2,7 +2,6 @@ import express from 'express'
 import { routes } from './routes'
 const app = express()
 
-require('dotenv').config()
 
 const PORT = 3333
 
